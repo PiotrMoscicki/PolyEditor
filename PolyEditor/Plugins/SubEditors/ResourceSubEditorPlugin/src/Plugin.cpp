@@ -1,16 +1,23 @@
 #include <iostream>
 
 #include <pp/PolyPlugin.hpp>
-#include <pt/SubEditor.hpp>
+#include <SubEditor/ResourceSubEditor.hpp>
 
-//-------------------------------------------------------------------------------------------------------
+using namespace ed::ResourceBrowser;
+
+// ************************************************************************************************
+// ************************************************************************************************
+// ************************************************************************************************
 class Plugin : public pp::IPlugin
 {
 public:
 	void init(std::shared_ptr<pp::Router> router) final
 	{
-		//router->registerIntentHandler<pt::CreateSubEditorIntent>(getPluginInfo(), )
-		
+		router->registerIntentHandler<pt::CreateSubEditorIntent<ISubEditor>>(getPluginInfo(), 
+			[] (pt::CreateSubEditorIntent<ISubEditor> intent)
+			{
+				return std::make_unique<ResourceSubEditor>();
+			});
 	}
 
 	void deinit(std::shared_ptr<pp::Router> router) final { }
@@ -19,5 +26,5 @@ public:
 private:
 };
 
-//------------------------------------------------------------------------------------------------------------------------------------------
+// ************************************************************************************************
 POLY_PLUGIN_ENTRY(Plugin);

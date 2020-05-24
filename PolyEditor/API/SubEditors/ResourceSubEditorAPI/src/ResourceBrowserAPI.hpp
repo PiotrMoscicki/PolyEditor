@@ -4,6 +4,7 @@
 #include <string>
 #include <optional>
 #include <memory>
+#include <pt/SubEditor.hpp>
 
 namespace ed::ResourceBrowser
 {
@@ -56,8 +57,8 @@ namespace ed::ResourceBrowser
 				std::shared_ptr<const ResourceItem> newParent) = 0;
 		};
 
-		static inline SubEditorInfo Info = { "IResourceBrowserSubEditor", 1 };
-		const SubEditorInfo& info() const final { return Info; };
+		static inline pt::SubEditorInfo Info = { "ed::ResourceBrowser::ISubEditor", 1 };
+		const pt::SubEditorInfo& info() const final { return Info; };
 		void SetOvserver(IObserver* observer) { m_observer = observer; }
 
 		virtual void RegisterType(std::shared_ptr<const ResourceType> type) = 0;
