@@ -1,0 +1,1 @@
+add_subdirectory(${RESOURCE_SUB_EDITOR_API_TARGET})
