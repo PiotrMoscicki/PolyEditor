@@ -44,27 +44,27 @@ namespace ed::ResourceBrowser
 		class IObserver
 		{
 		public:
-			virtual std::map<std::string, std::shared_ptr<QAction>> GetActions(
+			virtual std::map<std::string, std::shared_ptr<QAction>> getActions(
 				std::shared_ptr<const ResourceItem>) = 0;
 
-			virtual void Add(std::shared_ptr<const ResourceItem> parent, 
+			virtual void add(std::shared_ptr<const ResourceItem> parent, 
 				std::shared_ptr<const ResourceType> type, std::optional<std::string> name) = 0;
-			virtual void Remove(std::shared_ptr<const ResourceItem> resource) = 0;
-			virtual void Rename(std::shared_ptr<const ResourceItem> resource, std::string newName) = 0;
-			virtual void Move(std::shared_ptr<const ResourceItem> resource, 
+			virtual void remove(std::shared_ptr<const ResourceItem> resource) = 0;
+			virtual void rename(std::shared_ptr<const ResourceItem> resource, std::string newName) = 0;
+			virtual void move(std::shared_ptr<const ResourceItem> resource, 
 				std::shared_ptr<const ResourceItem> newParent) = 0;
-			virtual void CopyTo(std::shared_ptr<const ResourceItem> resource, 
+			virtual void copyTo(std::shared_ptr<const ResourceItem> resource, 
 				std::shared_ptr<const ResourceItem> newParent) = 0;
 		};
 
 		static inline pt::SubEditorInfo Info = { "ed::ResourceBrowser::ISubEditor", 1 };
 		const pt::SubEditorInfo& info() const final { return Info; };
-		void SetOvserver(IObserver* observer) { m_observer = observer; }
+		void setOvserver(IObserver* observer) { m_observer = observer; }
 
-		virtual void RegisterType(std::shared_ptr<const ResourceType> type) = 0;
-		virtual void UnregisterType(std::shared_ptr<const ResourceType> type) = 0;
-		virtual void RegisterResource(std::shared_ptr<const ResourceItem> resource) = 0;
-		virtual void UnregisterResource(std::shared_ptr<const ResourceItem> resource) = 0;
+		virtual void registerType(std::shared_ptr<const ResourceType> type) = 0;
+		virtual void unregisterType(std::shared_ptr<const ResourceType> type) = 0;
+		virtual void registerResource(std::shared_ptr<const ResourceItem> resource) = 0;
+		virtual void unregisterResource(std::shared_ptr<const ResourceItem> resource) = 0;
 
 	protected:
 		IObserver* m_observer = nullptr;

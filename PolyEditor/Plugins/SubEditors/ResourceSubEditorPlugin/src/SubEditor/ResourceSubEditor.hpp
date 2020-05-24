@@ -1,19 +1,29 @@
 #pragma once
 
+#include <qpointer.h>
 #include <ResourceBrowserAPI.hpp>
 
-namespace Ui { class ResourceSubEditor; }
+namespace Ui { class ResourceSubEditorWidget; }
 
 // ************************************************************************************************
 // ************************************************************************************************
 // ************************************************************************************************
-class ResourceSubEditor : public QWidget, public ed::ResourceBrowser::ISubEditor
+class ResourceSubEditorWidget : public QWidget
 {
 	Q_OBJECT;
 
 public:
-	ResourceSubEditor();
+	ResourceSubEditorWidget();
 
+private:
+	std::unique_ptr<Ui::ResourceSubEditorWidget> m_ui;
+};
+
+// ************************************************************************************************
+// ************************************************************************************************
+// ************************************************************************************************
+class ResourceSubEditor : public ed::ResourceBrowser::ISubEditor
+{
 protected:
 	// ResourceSubEditor
 	void onOpen() final;
@@ -21,11 +31,11 @@ protected:
 	void onClose() final;
 
 	// ed::ResourceBrowser::ISubEditor
-	void RegisterType(std::shared_ptr<const ed::ResourceBrowser::ResourceType> type) final;
-	void UnregisterType(std::shared_ptr<const ed::ResourceBrowser::ResourceType> type) final;
-	void RegisterResource(std::shared_ptr<const ed::ResourceBrowser::ResourceItem> resource) final;
-	void UnregisterResource(std::shared_ptr<const ed::ResourceBrowser::ResourceItem> resource) final;
+	void registerType(std::shared_ptr<const ed::ResourceBrowser::ResourceType> type) final;
+	void unregisterType(std::shared_ptr<const ed::ResourceBrowser::ResourceType> type) final;
+	void registerResource(std::shared_ptr<const ed::ResourceBrowser::ResourceItem> resource) final;
+	void unregisterResource(std::shared_ptr<const ed::ResourceBrowser::ResourceItem> resource) final;
 
 private:
-	std::unique_ptr<Ui::ResourceSubEditor> UI;
+	QPointer<ResourceSubEditorWidget> m_widget;
 };
