@@ -1,1 +1,2 @@
+add_subdirectory(Managers)
 add_subdirectory(SubEditors)

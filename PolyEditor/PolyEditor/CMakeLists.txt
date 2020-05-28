@@ -1,16 +1,15 @@
 # Include dir
-set(TEST_APP_INCLUDE ${CMAKE_CURRENT_LIST_DIR}/src)
+set(POLYEDITOR_INCLUDE ${CMAKE_CURRENT_LIST_DIR}/src)
 
 # Source files list
-file(GLOB_RECURSE TEST_APP_SRCS RELATIVE ${CMAKE_CURRENT_LIST_DIR}
-    ${TEST_APP_INCLUDE}/*.cpp 
-    ${TEST_APP_INCLUDE}/*.hpp 
-    ${TEST_APP_INCLUDE}/*.h)
-GenerateSourceGoups("${TEST_APP_SRCS}")
+file(GLOB_RECURSE POLYEDITOR_SRCS RELATIVE ${CMAKE_CURRENT_LIST_DIR}
+    ${POLYEDITOR_INCLUDE}/*.cpp 
+    ${POLYEDITOR_INCLUDE}/*.hpp 
+    ${POLYEDITOR_INCLUDE}/*.h)
+GenerateSourceGoups("${POLYEDITOR_SRCS}")
 
-add_executable(${TEST_APP_TARGET} ${TEST_APP_SRCS})
-target_include_directories(${TEST_APP_TARGET} PUBLIC ${TEST_APP_INCLUDE})
+add_executable(${POLYEDITOR_TARGET} ${POLYEDITOR_SRCS})
+target_include_directories(${POLYEDITOR_TARGET} PUBLIC ${POLYEDITOR_INCLUDE})
 
-target_link_libraries(${TEST_APP_TARGET} ${POLYPLUGIN_TARGET})
-target_link_libraries(${TEST_APP_TARGET} ${CALCULATOR_PLUGIN_API_TARGET})
-#add_dependencies(${TEST_APP_TARGET} ${CALCULATOR_PLUGIN_TARGET})
+target_link_libraries(${POLYEDITOR_TARGET} ${WINDOWS_MANAGER_API_TARGET})
+target_link_libraries(${POLYEDITOR_TARGET} Qt5::Widgets Qt5::Core)

@@ -52,8 +52,11 @@ set(AUTOUIC_SEARCH_PATHS Form)
 set(Qt5_DIR $ENV{POLY_QTDIR})
 list(APPEND CMAKE_PREFIX_PATH $ENV{POLY_QTDIR})
 
-set(POLYTOOLS_TARGET PolyTools)
+set(POLYEDITOR_TARGET PolyEditor)
+set(WINDOWS_MANAGER_API_TARGET WindowsManagerAPI)
+set(WINDOWS_MANAGER_PLUGIN_TARGET WindowsManagerPlugin)
 set(RESOURCE_SUB_EDITOR_API_TARGET ResourceSubEditorAPI)
 set(RESOURCE_SUB_EDITOR_PLUGIN_TARGET ResourceSubEditorPlugin)
 
 add_subdirectory(PolyEditor)
+add_subdirectory(PolyDock/PolyDock)

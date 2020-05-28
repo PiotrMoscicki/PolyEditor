@@ -1,0 +1,1 @@
+add_subdirectory(${WINDOWS_MANAGER_PLUGIN_TARGET})
