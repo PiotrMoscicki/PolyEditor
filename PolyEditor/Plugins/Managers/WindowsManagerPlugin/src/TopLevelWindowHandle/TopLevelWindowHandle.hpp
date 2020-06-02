@@ -1,23 +1,20 @@
 #pragma once
 
-#include <pd/PolyDockRegistry.hpp>
+#include <pd/TabbedWindowHandle.hpp>
 
 #include <WindowsManagerAPI.hpp>
 
 // *************************************************************************************************
 // *************************************************************************************************
 // *************************************************************************************************
-class WindowsManager : public ed::windowsManager::IManager
+class TopLevelWindowHandle : public ed::windowsManager::ITopLevelWindowHandle
 {
-protected:
-	// pt::Manager
-	void onOpen() final;
-	void onUpdate(float dt) final;
-	void onClose() final;
+public:
+	TopLevelWindowHandle(pd::TabbedWindowHandle handle);
 
-	// ed::windowsManager::IManager
-	std::unique_ptr<ed::windowsManager::ITopLevelWindowHandle> openTopLevelWindow() final;
+	// ed::windowsManager::ITopLevelWindowHandle
+	std::unique_ptr<pt::ISubEditorWindowHandle> openSubEditorWindow() final;
 
 private:
-	pd::PolyDockRegistry m_registry;
+	pd::TabbedWindowHandle m_windowHandle;
 };

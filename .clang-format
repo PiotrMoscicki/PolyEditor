@@ -1,0 +1,16 @@
+---
+BasedOnStyle: Microsoft
+Language: Cpp
+ColumnLimit: '100'
+TabWidth: '4'
+AccessModifierOffset: '-4'
+IndentCaseLabels: 'false'
+PointerAlignment: Left
+BreakBeforeBinaryOperators: All
+NamespaceIndentation: Inner
+Standard: c++20
+BreakBeforeBraces: Allman
+UseTab: Always
+AllowShortFunctionsOnASingleLine: 'true'
+
+...

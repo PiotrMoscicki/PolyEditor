@@ -10,35 +10,27 @@
 
 #include <pt/ISubEditorWindowHandle.hpp>
 
+#include <TopLevelWindowHandle/TopLevelWindowHandle.hpp>
+
 using namespace ed::windowsManager;
 
-// ************************************************************************************************
+// *************************************************************************************************
 void WindowsManager::onOpen()
 {
 }
 
-// ************************************************************************************************
+// *************************************************************************************************
 void WindowsManager::onUpdate(const float dt)
 {
 }
 
-// ************************************************************************************************
+// *************************************************************************************************
 void WindowsManager::onClose()
 {
 }
 
-// ************************************************************************************************
-void WindowsManager::openTopLevelWindow()
+// *************************************************************************************************
+std::unique_ptr<ITopLevelWindowHandle> WindowsManager::openTopLevelWindow()
 {
-	pd::TabbedWindowHandle window1 = m_registry.createWindow();
-	pd::WindowTabHandle tab1 = window1.getTabsHeader().addTab();
-	pd::WindowTabHandle tab2 = window1.getTabsHeader().addTab();
-	pd::WindowTabHandle tab3 = window1.getTabsHeader().addTab();
-
-	tab1.setName("tab1");
-	tab1.setTabContent(new QPushButton("tab1"));
-	tab2.setName("tab2");
-	tab2.setTabContent(new QCalendarWidget());
-	tab3.setName("tab3");
-	tab3.setTabContent(new QLineEdit("tab3"));
+	return std::make_unique<TopLevelWindowHandle>(m_registry.createWindow());
 }
