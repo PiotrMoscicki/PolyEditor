@@ -32,7 +32,11 @@ int main(int argc, char* argv[])
 	else
 		return -1;
 
-	windowsManager->openTopLevelWindow();
+	auto topLevelWindow = windowsManager->openTopLevelWindow();
+	topLevelWindow->openSubEditorWindow();
+	topLevelWindow->openSubEditorWindow();
+	topLevelWindow->openSubEditorWindow();
+	topLevelWindow->openSubEditorWindow();
 
 	int result = app.exec();
 

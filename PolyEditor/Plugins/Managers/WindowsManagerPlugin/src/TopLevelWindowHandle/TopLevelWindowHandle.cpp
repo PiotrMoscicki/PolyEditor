@@ -1,14 +1,6 @@
 #include "TopLevelWindowHandle.hpp"
 
-#include <qwidget.h>
-#include <qapplication.h>
-#include <qcommandlineparser.h>
-#include <qpushbutton.h>
-#include <qlabel.h>
-#include <qlineedit.h>
-#include <qcalendarwidget.h>
-
-#include <pt/ISubEditorWindowHandle.hpp>
+#include <SubEditorWindowHandle/SubEditorWindowHandle.hpp>
 
 using namespace ed::windowsManager;
 
@@ -21,6 +13,5 @@ TopLevelWindowHandle::TopLevelWindowHandle(pd::TabbedWindowHandle handle)
 // *************************************************************************************************
 std::unique_ptr<pt::ISubEditorWindowHandle> TopLevelWindowHandle::openSubEditorWindow()
 {
-	//m_windowHandle.getTabsHeader().addTab();
-	return nullptr;
+	return std::make_unique<SubEditorWindowHandle>(m_windowHandle.getTabsHeader().addTab());
 }
